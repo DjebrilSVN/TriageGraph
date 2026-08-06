@@ -8,7 +8,15 @@ Provides:
 """
 
 import os
+import sys
+from pathlib import Path
 import sqlite3
+
+# Ensure project root is in sys.path when launched via `streamlit run src/ui/app.py`
+REPO_ROOT = Path(__file__).resolve().parent.parent.parent
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+
 import streamlit as st
 from langgraph.types import Command
 from langgraph.checkpoint.sqlite import SqliteSaver
